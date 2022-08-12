@@ -7,7 +7,6 @@ from Assets.Timer.autotimer import activate
 import sqlite3
 from Assets.subtitle.subtitle import subtitle
 import pyshorteners
-import sys
 from spaceinvaders import start
 
 # from chatterbot import ChatBot
@@ -42,7 +41,7 @@ from system_specs import System_specs
 from Mk3 import speak, takecommand
 
 # for the memory it should have
-conn = sqlite3.connect('Assets/memory/memmory.db')
+conn = sqlite3.connect("Assets/memory/memmory.db")
 try:
     conn.execute("""CREATE TABLE MEMORY
                 (USER_INPUT TEXT PRIMARY KEY NOT NULL);""")
@@ -64,10 +63,10 @@ def make_short(url_to_short):
 
 def init_check():
     if internet_availability():
-        if face_rec():
-            return True
-        else:
+        if not face_rec():
             return False
+        else:
+            return True
     else:
         return False
 

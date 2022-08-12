@@ -12,4 +12,7 @@
 .\Mk3\__pyache__\
 .\password.txt
 .\modules-install\
+./modules-install
+./venv/
+.\venv\
 
