@@ -7,7 +7,7 @@ from Assets.Timer.autotimer import activate
 import sqlite3
 from Assets.subtitle.subtitle import subtitle
 import pyshorteners
-from spaceinvaders import start
+from Assets.spaceinvaders import start
 
 # from chatterbot import ChatBot
 # from chatterbot.trainers import ChatterBotCorpusTrainer
@@ -16,7 +16,7 @@ import cv2
 
 import pyautogui
 import pyjokes
-import scan_port
+import Assets.scan_port as scan_port
 
 import winshell
 
@@ -30,15 +30,15 @@ from youtubetaggenerator.youtubetaggenerator import YoutubeTagGenerator
 from Assets.Amazon import utils as u
 from Assets.Deskcleaner import cleandesk as cd
 
-from diction import translate
-from loc import weather
-from camera import face_rec, New_access
-from control_keys import Tab_Opt, Win_Opt, Ctrl_Keys
-from system_specs import System_specs
+from Assets.diction import translate
+from Assets.loc import weather
+from Assets.camera import face_rec, New_access
+from Assets.control_keys import Tab_Opt, Win_Opt, Ctrl_Keys
+from Assets.system_specs import System_specs
 
 # from keylogger import keylogger_py
 
-from Mk3 import speak, takecommand
+from . import speak, takecommand
 
 # for the memory it should have
 conn = sqlite3.connect("Assets/memory/memmory.db")
@@ -427,7 +427,7 @@ if __name__ == '__main__':
             search_web(query)
 
         elif 'youtube downloader' in query:
-            exec(open('youtube_downloader.py').read())
+            exec(open('./Assets/youtube_downloader.py').read())
 
         elif 'jarvis are you there' in query:
             speak("Yes Sir, at your service")
@@ -634,7 +634,12 @@ if __name__ == '__main__':
             speak("Shall we play a game ?")
             start()
 
-        check_sleep(query)
+        elif "summarize" in query:
+            from Assets.text_summarize import main
+            speak("Please type in the name of the text file which you want to summarize")
+            text_file = input("Please type in the name of the text file which you want to summarize: ")
+            main(text_file)
+
         # elif 'safe' in query:
         #     m()
         #
